@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>update portofolio</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* ===== [1] GLOBAL STYLES & NEW PROFESSIONAL PALETTE ===== */
+      :root {
+        --primary-color: #64ffda; /* Vibrant Teal Accent */
+        --secondary-color: #ccd6f6; /* Lightest Slate for Headings */
+        --text-color: #8892b0; /* Slate for Body Text */
+        --background-dark: #0a192f; /* Dark Navy Background */
+        --background-light: #112240; /* Lighter Navy for Cards */
+        --card-shadow: 0 10px 30px -15px rgba(2, 12, 27, 0.7);
+        --border-radius: 8px;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        background-color: var(--background-dark);
+        color: var(--text-color);
+        line-height: 1.6;
+      }
+
+      section {
+        padding: 6rem 2rem;
+        overflow: hidden;
+      }
+
+      .container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0 15px;
+      }
+
+      /* Section headings */
+      .section-heading {
+        font-size: 2.5rem;
+        color: var(--secondary-color);
+        text-align: center;
+        margin-bottom: 3rem;
+        font-weight: 700;
+        position: relative;
+        padding-bottom: 0.5rem;
+      }
+      .section-heading::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 3px;
+        background-color: var(--primary-color);
+      }
+
+      /* ===== [2] NAVIGATION BAR ===== */
+      nav {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1000;
+        padding: 1rem 2rem;
+        background-color: transparent;
+        transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      }
+      nav.scrolled {
+        background-color: rgba(10, 25, 47, 0.85);
+        box-shadow: 0 10px 30px -10px rgba(2, 12, 27, 0.7);
+        backdrop-filter: blur(10px);
+      }
+      .nav-container {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+      .nav-links {
+        list-style: none;
+        display: flex;
+        gap: 2rem;
+      }
+      .nav-links a {
+        text-decoration: none;
+        color: var(--secondary-color);
+        font-weight: 600;
+        transition: color 0.3s ease;
+      }
+      .nav-links a:hover {
+        color: var(--primary-color);
+      }
+
+      /* ===== [3] HERO SECTION ===== */
+      #hero {
+        display: flex;
+        align-items: center;
+        min-height: 100vh;
+        padding-top: 5rem;
+      }
+
+      .hero-content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 3rem;
+        width: 100%;
+      }
+
+      .hero-text {
+        flex: 1 1 60%;
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+      }
+      .hero-text.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .hero-text h3 {
+        color: var(--primary-color);
+        font-weight: 400;
+        font-size: 1.1rem;
+        margin-bottom: 1rem;
+      }
+
+      .hero-text h1 {
+        font-size: 4rem;
+        font-weight: 700;
+        color: var(--secondary-color);
+        margin: 0;
+        line-height: 1.1;
+      }
+
+      .hero-text h4 {
+        font-size: 1.75rem;
+        color: var(--text-color);
+        font-weight: 600;
+        margin-top: 0.5rem;
+      }
+
+      .hero-text .quote {
+        margin: 2rem 0;
+        font-style: italic;
+        max-width: 500px;
+      }
+
+      .cta-button {
+        text-decoration: none;
+        background-color: transparent;
+        border: 2px solid var(--primary-color);
+        padding: 12px 24px;
+        color: var(--primary-color);
+        border-radius: var(--border-radius);
+        font-weight: 600;
+        display: inline-block;
+        transition: all 0.3s ease;
+        margin-top: 1rem;
+      }
+      .cta-button:hover {
+        background-color: rgba(100, 255, 218, 0.1);
+      }
+
+      .hero-image {
+        flex: 1 1 40%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .hero-image img {
+        width: 300px;
+        height: 300px;
+        object-fit: cover;
+        border-radius: 50%;
+        border: 5px solid var(--primary-color);
+        box-shadow: 0 0 30px rgba(100, 255, 218, 0.3);
+      }
+
+      /* ===== [4] ABOUT SECTION ===== */
+      #about {
+        background-color: var(--background-dark);
+      }
+      .about-grid {
+        display: flex;
+        gap: 2rem;
+      }
+      .about-card {
+        flex: 1;
+        padding: 2.5rem;
+        background: var(--background-light);
+        border-radius: var(--border-radius);
+        box-shadow: var(--card-shadow);
+      }
+      .about-card h3 {
+        font-size: 1.5rem;
+        color: var(--primary-color);
+        margin-bottom: 1rem;
+      }
+      .social-links {
+        display: flex;
+        gap: 1.5rem;
+        margin-top: 1.5rem;
+      }
+      .social-links img {
+        width: 28px;
+        height: 28px;
+        transition: transform 0.3s ease, filter 0.3s ease;
+        filter: grayscale(100%) opacity(0.6);
+      }
+      .social-links a:hover img {
+        transform: scale(1.2);
+        filter: grayscale(0%) opacity(1);
+      }
+
+      /* ===== [5] PROJECTS SECTION ===== */
+      #projects {
+        background-color: var(--background-dark);
+      }
+      .project-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.5rem;
+      }
+      .card {
+        background: var(--background-light);
+        border-radius: var(--border-radius);
+        overflow: hidden;
+        box-shadow: var(--card-shadow);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        display: flex;
+        flex-direction: column;
+      }
+      .card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px -15px rgba(2, 12, 27, 0.8);
+      }
+      .card img {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+        filter: grayscale(50%);
+        transition: filter 0.3s ease;
+      }
+      .card:hover img {
+        filter: grayscale(0%);
+      }
+      .card-body {
+        padding: 1.5rem;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+      }
+      .card-title {
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        color: var(--secondary-color);
+      }
+      .card-text {
+        color: var(--text-color);
+        font-size: 0.9rem;
+        flex-grow: 1;
+        margin-bottom: 1rem;
+      }
+      .card-body a {
+        text-decoration: none;
+        color: var(--primary-color);
+        font-weight: 600;
+        align-self: flex-start;
+      }
+
+      /* ===== [6] SKILLS SECTION (Simplified & Professional) ===== */
+      #skills {
+        padding: 6rem 1rem;
+        text-align: center;
+      }
+      .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 2rem;
+        max-width: 900px;
+        margin: 0 auto;
+        justify-content: center;
+      }
+      .skill-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        transition: transform 0.3s ease;
+        position: relative;
+        padding: 20px;
+        cursor: pointer;
+      }
+      .skill-item:hover {
+        transform: translateY(-5px);
+        color: var(--primary-color);
+      }
+      .skill-item img {
+        width: 70px;
+        height: 70px;
+        object-fit: contain;
+        background-color: #fff;
+        border-radius: 50%;
+        padding: 10px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        position: relative;
+        z-index: 2;
+      }
+      .skill-item p {
+        font-weight: 600;
+        color: var(--secondary-color);
+        position: relative;
+        z-index: 2;
+      }
+
+      /* Animasi lingkaran pada skill saat hover */
+      .skill-item::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        border-radius: 50%;
+        background-color: rgba(100, 255, 218, 0.1);
+        transform: translate(-50%, -50%);
+        transition: all 0.4s ease;
+        z-index: 1;
+      }
+
+      .skill-item:hover::before {
+        width: 100px;
+        height: 100px;
+      }
+
+      /* Persentase keahlian */
+      .skill-percentage {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: var(--primary-color);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        z-index: 3;
+      }
+
+      .skill-item:hover .skill-percentage {
+        opacity: 1;
+      }
+
+      .skill-item:hover p {
+        opacity: 0;
+      }
+
+      /* ===== [7] FOOTER & CONTACT SECTION WITH WAVE ===== */
+      footer {
+        position: relative;
+        background-color: #061121; /* Warna sedikit lebih terang dari background utama */
+        color: var(--secondary-color);
+        text-align: center;
+        padding: 8rem 2rem 2rem 2rem; /* More padding at the top for wave */
+        overflow: hidden; /* Important for positioning the wave */
+      }
+      .contact-content h2 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+      }
+      .contact-content p {
+        max-width: 500px;
+        margin: 0 auto 2rem auto;
+        color: var(--text-color);
+      }
+      .wave-container {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 320px; /* Adjust height of the wave area */
+        z-index: 0;
+      }
+      canvas#wave {
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+      /* Ensure content is above the wave */
+      .contact-content {
+        position: relative;
+        z-index: 1;
+      }
+
+      .footer-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        text-align: left;
+        max-width: 1100px;
+        margin: 0 auto 3rem auto;
+      }
+      .footer-col h4 {
+        color: var(--primary-color);
+        margin-bottom: 1rem;
+        font-size: 1.2rem;
+      }
+      .footer-col ul {
+        list-style: none;
+      }
+      .footer-col ul li {
+        margin-bottom: 0.5rem;
+        color: var(--text-color);
+      }
+      .footer-col ul li a {
+        color: var(--text-color);
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+      .footer-col ul li a:hover {
+        color: var(--primary-color);
+      }
+      .footer-bottom {
+        border-top: 1px solid var(--background-light);
+        padding-top: 2rem;
+        text-align: center;
+      }
+      .like-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        background-color: var(--background-light);
+        border: none;
+        padding: 10px 20px;
+        border-radius: var(--border-radius);
+        color: var(--secondary-color);
+        cursor: pointer;
+        transition: background-color 0.3s, transform 0.2s;
+        font-family: "Poppins", sans-serif;
+        font-size: 1rem;
+      }
+      .like-button:hover {
+        background-color: #233554;
+      }
+      .like-button.liked {
+        color: var(--primary-color);
+        transform: scale(1.05);
+      }
+      .like-button .heart {
+        font-size: 1.2rem;
+      }
+
+      /* ===== [8] ANIMATIONS & RESPONSIVE DESIGN ===== */
+      .fade-in-element {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+      }
+      .fade-in-element.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      @media (max-width: 992px) {
+        .hero-text h1 {
+          font-size: 3rem;
+        }
+        .hero-text h4 {
+          font-size: 1.5rem;
+        }
+        .about-grid {
+          flex-direction: column;
+        }
+      }
+
+      @media (max-width: 768px) {
+        section {
+          padding: 4rem 1rem;
+        }
+        .hero-content {
+          flex-direction: column-reverse;
+          text-align: center;
+        }
+        .hero-image img {
+          width: 250px;
+          height: 250px;
+        }
+        .hero-text h1 {
+          font-size: 2.5rem;
+        }
+        .section-heading {
+          font-size: 2rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav id="navbar">
+      <div class="nav-container">
+        <ul class="nav-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <section id="hero">
+      <div class="container hero-content">
+        <div class="hero-text">
+          <h3>Hello🙌, nama saya...</h3>
+          <h1>Putra Setiaman Zebua</h1>
+          <h4>
+            Mahasiswa & <span style="color: white">Network Engineer.</span>
+          </h4>
+          <p class="quote">
+            Hidup ini cuma sementara, jadi jalani dengan penuh semangat dan
+            syukur. Nikmati setiap langkah, tapi jangan lupa untuk tetap jadi
+            kebanggaan bagi keluargamu.
+          </p>
+          <a href="#contact" class="cta-button">Hubungi Saya</a>
+        </div>
+        <div class="hero-image">
+          <img
+            src="img/profilsaya.png"
+            alt="Foto Profil Putra Setiaman Zebua"
+          />
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <h2 class="section-heading">About Me</h2>
+        <div class="about-grid">
+          <div class="about-card fade-in-element">
+            <h3>Tentang saya</h3>
+            <p>
+              Saya seorang mahasiswa di Universitas Katolik St. Thomas, jurusan
+              Teknik Informatika. Saya memiliki minat yang besar di bidang
+              teknologi informasi dan pengembangan perangkat lunak. Saat ini,
+              saya fokus mengembangkan keterampilan saya di bidang pemrograman,
+              jaringan, dan penambangan data.
+            </p>
+          </div>
+          <div
+            class="about-card fade-in-element"
+            style="transition-delay: 0.2s"
+          >
+            <h3>Mari berteman...</h3>
+            <p>
+              Saya senang membangun koneksi dan siap membantu jika ada kebutuhan
+              atau pertanyaan di bidang saya.
+            </p>
+            <div class="social-links">
+              <a
+                href="https://www.facebook.com/share/1BGEivL8fC/"
+                target="_blank"
+                ><img
+                  src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg"
+                  alt="Facebook"
+              /></a>
+              <a
+                href="https://www.instagram.com/putrasetiamanzebua?igsh=bXlzYmVod3I5aXBm"
+                target="_blank"
+                ><img
+                  src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg"
+                  alt="Instagram"
+              /></a>
+              <a href="https://linkedin.com/in/username" target="_blank"
+                ><img
+                  src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg"
+                  alt="LinkedIn"
+              /></a>
+              <a href="https://github.com/username" target="_blank"
+                ><img
+                  src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/github.svg"
+                  alt="GitHub"
+              /></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container">
+        <h2 class="section-heading">My Projects</h2>
+        <div class="project-grid">
+          <div class="card fade-in-element">
+            <img src="img/proyek1.png" alt="Project Research Journal" />
+            <div class="card-body">
+              <h5 class="card-title">
+                Peran Teknologi dalam Penanggulangan Bencana
+              </h5>
+              <p class="card-text">
+                Artikel yang saya tulis membahas hubungan antara perkembangan
+                teknologi dan efektivitas penyaluran bantuan selama bencana.
+              </p>
+              <a
+                href="https://com.ojs.co.id/index.php/jkm/article/view/353"
+                target="_blank"
+                >View Journal</a
+              >
+            </div>
+          </div>
+          <div class="card fade-in-element" style="transition-delay: 0.1s">
+            <img src="img/proyek2.png" alt="Project Traveln" />
+            <div class="card-body">
+              <h5 class="card-title">Traveln Website</h5>
+              <p class="card-text">
+                Mengembangkan sistem situs web untuk memudahkan perjalanan
+                wisatawan dan membantu mereka menjelajahi destinasi terpencil
+                dan belum terjamah.
+              </p>
+            </div>
+          </div>
+          <div class="card fade-in-element" style="transition-delay: 0.2s">
+            <img
+              src="img/proyek3.png"
+              alt="Project License Plate Recognition"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Sistem Pengenalan Plat Nomor</h5>
+              <p class="card-text">
+                Aplikasi web ini dikembangkan untuk menyederhanakan identifikasi
+                kendaraan dengan mengenali dan memproses nomor plat kendaraan.
+              </p>
+            </div>
+          </div>
+          <div class="card fade-in-element" style="transition-delay: 0.3s">
+            <img src="img/proyek4.png" alt="Project Online Attendance" />
+            <div class="card-body">
+              <h5 class="card-title">Sistem Absensi Online</h5>
+              <p class="card-text">
+                Dikembangkan untuk menyederhanakan pelacakan kehadiran karyawan
+                atau siswa secara real-time, dengan fitur login aman dan
+                clock-in/out berbasis kata sandi.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <h2 class="section-heading">My Skills</h2>
+      <div class="container">
+        <div class="skills-grid">
+          <div class="skill-item">
+            <img src="img/logohtml.png" alt="HTML Logo" />
+            <p>HTML</p>
+            <span class="skill-percentage">90%</span>
+          </div>
+          <div class="skill-item">
+            <img src="img/css.png" alt="CSS Logo" />
+            <p>CSS</p>
+            <span class="skill-percentage">85%</span>
+          </div>
+          <div class="skill-item">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png"
+              alt="JavaScript Logo"
+            />
+            <p>JavaScript</p>
+            <span class="skill-percentage">80%</span>
+          </div>
+          <div class="skill-item">
+            <img src="img/icons8-python-96.png" alt="Python Logo" />
+            <p>Python</p>
+            <span class="skill-percentage">75%</span>
+          </div>
+          <div class="skill-item">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/2/27/PHP-logo.svg"
+              alt="PHP Logo"
+            />
+            <p>PHP</p>
+            <span class="skill-percentage">70%</span>
+          </div>
+          <div class="skill-item">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/a/af/Adobe_Photoshop_CC_icon.svg"
+              alt="Photoshop Logo"
+            />
+            <p>Photoshop</p>
+            <span class="skill-percentage">65%</span>
+          </div>
+          <div class="skill-item">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/3/33/Figma-logo.svg"
+              alt="Figma Logo"
+            />
+            <p>Figma</p>
+            <span class="skill-percentage">60%</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer id="contact">
+      <div class="wave-container">
+        <canvas id="wave"></canvas>
+      </div>
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-col">
+            <h4>
+              <span class="translate-text" data-en="Contact" data-id="Kontak"
+                >Contact</span
+              >
+            </h4>
+            <ul>
+              <li>WhatsApp: +62 822-xxxx-xxxx</li>
+              <li>Instagram: @putrasetiamanzebua</li>
+              <li>Facebook: Putra Setiaman Zebua</li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>
+              <span
+                class="translate-text"
+                data-en="Education"
+                data-id="Pendidikan"
+                >Education</span
+              >
+            </h4>
+            <ul>
+              <li>SD Swasta Lasara Idanői</li>
+              <li>SMP Negeri 1 Gido</li>
+              <li>SMK Swasta Pemda Nias</li>
+              <li>Universitas Katolik Santo Thomas</li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>
+            <span
+              class="translate-text"
+              data-en="Enjoyed your visit? Leave a like!"
+              data-id="Menikmati kunjungan Anda? Tinggalkan suka!"
+              >Enjoyed your visit? Leave a like!</span
+            >
+          </p>
+          <button class="like-button" id="likeBtn">
+            <span class="heart">♡</span>
+            <span class="translate-text" data-en="Like" data-id="Suka"
+              >Like</span
+            >
+            <span id="likeCount" style="margin-left: 8px">0</span>
+          </button>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // ===== Animate elements on scroll =====
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+            }
+          });
+        },
+        {
+          threshold: 0.1,
+        }
+      );
+      const elementsToAnimate = document.querySelectorAll(".fade-in-element");
+      elementsToAnimate.forEach((el) => observer.observe(el));
+
+      // ===== Animate hero text on page load =====
+      window.addEventListener("DOMContentLoaded", function () {
+        const heroText = document.querySelector(".hero-text");
+        setTimeout(() => {
+          heroText.classList.add("is-visible");
+        }, 300);
+      });
+
+      // ===== Navbar background on scroll =====
+      const nav = document.getElementById("navbar");
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 50) {
+          nav.classList.add("scrolled");
+        } else {
+          nav.classList.remove("scrolled");
+        }
+      });
+
+      // ===== Wave Animation =====
+      (function () {
+        const canvas = document.getElementById("wave");
+        const ctx = canvas.getContext("2d");
+
+        function resize() {
+          canvas.width = canvas.clientWidth * devicePixelRatio;
+          canvas.height = canvas.clientHeight * devicePixelRatio;
+          ctx.scale(devicePixelRatio, devicePixelRatio);
+        }
+        window.addEventListener("resize", resize);
+        resize();
+
+        let t = 0;
+        function draw() {
+          const w = canvas.clientWidth;
+          const h = canvas.clientHeight;
+          ctx.clearRect(0, 0, w, h);
+
+          // Blue and Black (via transparency) waves
+          drawSine(0.6, 0.015, 40, "rgba(100, 255, 218, 0.18)"); // Teal with alpha
+          drawSine(1.2, 0.01, 60, "rgba(100, 255, 218, 0.12)");
+          drawSine(1.8, 0.008, 100, "rgba(100, 255, 218, 0.08)");
+
+          t += 0.02;
+          requestAnimationFrame(draw);
+        }
+
+        function drawSine(amplitude, frequency, baselineOffset, color) {
+          const w = canvas.clientWidth;
+          const h = canvas.clientHeight;
+          ctx.beginPath();
+          ctx.moveTo(0, h);
+          for (let x = 0; x <= w; x += 2) {
+            const y =
+              h / 2 +
+              Math.sin(x * frequency + t * amplitude) * (amplitude * 30) +
+              baselineOffset -
+              80;
+            ctx.lineTo(x, y);
+          }
+          ctx.lineTo(w, h);
+          ctx.closePath();
+          ctx.fillStyle = color;
+          ctx.fill();
+        }
+
+        draw();
+      })();
+
+      // ===== FUNGSI TOMBOL LIKE =====
+      const likeBtn = document.getElementById("likeBtn");
+      const likeCountSpan = document.getElementById("likeCount");
+      const heartIcon = likeBtn.querySelector(".heart");
+
+      // Cek localStorage saat halaman dimuat
+      let likeCount = parseInt(localStorage.getItem("pageLikes") || 0);
+      let isLiked = localStorage.getItem("isPageLiked") === "true";
+
+      function updateLikeButton() {
+        likeCountSpan.textContent = likeCount;
+        if (isLiked) {
+          likeBtn.classList.add("liked");
+          heartIcon.textContent = "♥"; // Hati terisi
+        } else {
+          likeBtn.classList.remove("liked");
+          heartIcon.textContent = "♡"; // Hati kosong
+        }
+      }
+
+      updateLikeButton(); // Panggil saat pertama kali load
+
+      likeBtn.addEventListener("click", () => {
+        if (isLiked) {
+          likeCount--;
+          isLiked = false;
+        } else {
+          likeCount++;
+          isLiked = true;
+        }
+
+        // Simpan state ke localStorage
+        localStorage.setItem("pageLikes", likeCount);
+        localStorage.setItem("isPageLiked", isLiked);
+
+        updateLikeButton();
+      });
+    </script>
+  </body>
+</html>
