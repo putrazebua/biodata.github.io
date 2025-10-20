@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://putrazebua.github.io/biodata.github.io/sitemap.xml
