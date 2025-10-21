@@ -827,13 +827,13 @@
               >Kamu mau berteman? Tolong tinggalkan Like anda!</span
             >
           </p>
-          <button class="like-button" id="likeBtn">
-            <span class="heart">♡</span>
-            <span class="translate-text" data-en="Like" data-id="Suka"
-              >Like</span
-            >
-            <span id="likeCount" style="margin-left: 8px">0</span>
-          </button>
+        <button class="like-button" id="likeBtn">
+  <span class="heart">♡</span>
+  <span class="translate-text" data-en="Like" data-id="Suka">Like</span>
+  <span id="likeCount" style="margin-left: 8px">0</span>
+</button>
+<canvas id="wave"></canvas>
+
         </div>
       </div>
     </footer>
@@ -923,43 +923,44 @@
         draw();
       })();
 
-      // ===== FUNGSI TOMBOL LIKE =====
-      const likeBtn = document.getElementById("likeBtn");
-      const likeCountSpan = document.getElementById("likeCount");
-      const heartIcon = likeBtn.querySelector(".heart");
+     window.addEventListener("DOMContentLoaded", () => {
+  const likeBtn = document.getElementById("likeBtn");
+  const likeCountSpan = document.getElementById("likeCount");
+  const heartIcon = likeBtn.querySelector(".heart");
 
-      // Cek localStorage saat halaman dimuat
-      let likeCount = parseInt(localStorage.getItem("pageLikes") || 0);
-      let isLiked = localStorage.getItem("isPageLiked") === "true";
+  // Ambil data dari localStorage
+  let likeCount = parseInt(localStorage.getItem("pageLikes") || "0");
+  let isLiked = localStorage.getItem("isPageLiked") === "true";
 
-      function updateLikeButton() {
-        likeCountSpan.textContent = likeCount;
-        if (isLiked) {
-          likeBtn.classList.add("liked");
-          heartIcon.textContent = "♥"; // Hati terisi
-        } else {
-          likeBtn.classList.remove("liked");
-          heartIcon.textContent = "♡"; // Hati kosong
-        }
-      }
+  function updateLikeButton() {
+    likeCountSpan.textContent = likeCount;
+    if (isLiked) {
+      likeBtn.classList.add("liked");
+      heartIcon.textContent = "♥"; // hati penuh
+    } else {
+      likeBtn.classList.remove("liked");
+      heartIcon.textContent = "♡"; // hati kosong
+    }
+  }
 
-      updateLikeButton(); // Panggil saat pertama kali load
+  updateLikeButton(); // tampilkan status awal
 
-      likeBtn.addEventListener("click", () => {
-        if (isLiked) {
-          likeCount--;
-          isLiked = false;
-        } else {
-          likeCount++;
-          isLiked = true;
-        }
+  likeBtn.addEventListener("click", () => {
+    if (isLiked) {
+      likeCount--;
+      isLiked = false;
+    } else {
+      likeCount++;
+      isLiked = true;
+    }
 
-        // Simpan state ke localStorage
-        localStorage.setItem("pageLikes", likeCount);
-        localStorage.setItem("isPageLiked", isLiked);
+    // Simpan ke localStorage
+    localStorage.setItem("pageLikes", likeCount);
+    localStorage.setItem("isPageLiked", isLiked);
 
-        updateLikeButton();
-      });
+    updateLikeButton();
+  });
+});
     </script>
   </body>
 </html>
